@@ -485,6 +485,9 @@
   <div class="app">
     <!-- Intro Screen -->
     <div id="intro" class="screen intro-screen active">
+      <div style="text-align: right; margin-bottom: 16px;">
+        <button class="info-button" onclick="showInfo('intro')">ℹ️ Info</button>
+      </div>
       <h1>De Gebroeders Karamazov</h1>
       <h2>Een Readers Guide</h2>
       <p class="intro-description">
@@ -511,11 +514,18 @@
         </div>
       </div>
       <button class="start-button" onclick="showChapterSelect()">Begin met lezen</button>
+      <div style="margin-top: 16px;">
+        <button class="secondary-btn" onclick="showInfo('intro')">ℹ️ Info</button>
+      </div>
       <p id="resumeNotice" class="resume-notice hidden"></p>
     </div>
 
     <!-- Chapter Select -->
     <div id="select" class="screen chapter-select">
+      <div class="header">
+        <button class="back-button" onclick="showIntro()">← Home</button>
+        <button class="info-button" onclick="showInfo('select')">ℹ️ Info</button>
+      </div>
       <h2>Kies een hoofdstuk</h2>
       <p id="progressSubtitle" class="subtitle"></p>
       <div id="chapterList"></div>
@@ -525,7 +535,7 @@
     <div id="view" class="screen chapter-view">
       <div class="header">
         <button class="back-button" onclick="showChapterSelect()">← Terug</button>
-        <button class="info-button" onclick="showInfo()">ℹ️ Info</button>
+        <button class="info-button" onclick="showInfo('view')">ℹ️ Info</button>
         <span id="headerProgress" class="progress-badge"></span>
       </div>
       <div id="chapterContent"></div>
@@ -857,8 +867,8 @@ function showScreen(id) {
       showScreen('view');
     }
 
-    function showInfo() {
-      lastScreen = 'view';
+    function showInfo(fromScreen) {
+      lastScreen = fromScreen || 'select';
       switchInfoTab('characters');
       showScreen('info');
     }
@@ -872,8 +882,14 @@ function showScreen(id) {
     }
 
     function switchInfoTab(tab, btn) {
-      document.querySelectorAll('.info-tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
+      if (btn) {
+        document.querySelectorAll('.info-tab').forEach(t => t.classList.remove('active'));
+        btn.classList.add('active');
+      } else {
+        document.querySelectorAll('.info-tab').forEach((t, i) => {
+          t.classList.toggle('active', i === (tab === 'characters' ? 0 : tab === 'locations' ? 1 : 2));
+        });
+      }
       
       const container = document.getElementById('infoContent');
       let html = '';
