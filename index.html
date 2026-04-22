@@ -562,173 +562,125 @@
   </div>
 
   <script>
-    const books = [
+const books = [
       {
-        id: 'book-1',
-        title: 'Boek I: Een onwaardige geschiedenis',
+        id: 'deel-1',
+        title: 'EERSTE DEEL',
         chapters: [
-          {
-            id: 'ch-1-1',
-            title: 'Hoofdstuk 1: Patriarchale wellust',
-            introduction: 'Het verhaal begint met de oude Fyodor Karamazov, een landgoedbezitter die bekend staat om zijn wellustige en immorele gedrag. Hij is al drie keer weduwnaar en heeft geen liefde voor zijn kinderen. Fyodor is een man die alleen maar aan drank, vrouwen en geld denkt. Zijn gedrag is het toonbeeld van wat Dostojevski wil zeggen over de verrotting van de Russische maatschappij in die tijd.\n\nIn dit hoofdstuk ontmoeten we ook Pjotr Maksimovitsj Perkhotin, een jonge advocaat die naar het landgoed wordt gestuurd door zijn werkgever. Hij is nieuwsgierig en opmerkzaam, en zal later een belangrijke rol spelen in het verhaal.',
-            themes: ['Vaderlijke autoriteit', 'Morele verrotting', 'De Russische landadel'],
-            philosophy: 'Dostojevski introduceert het thema van de "vader" als symbool voor God. Fyodor is een parodie op een geestelijke vader — iemand die zijn verantwoordelijkheden als ouder volledig verwaarloost. Dit staat in contrast met de idee van een liefdevolle, spirituele vader die in het christendom wordt voorgesteld. De vraag die Dostojevski stelt: hoe kan een goede God bestaan als aardse vaders zo faliekant kunnen falen?',
-            questions: [
-              'Hoe zou je de rol van Fyodor als vader karakteriseren?',
-              'Wat zegt dit over de maatschappij waarin Dostojevski schreef?',
-              'Welke verwachtingen hebben kinderen van hun ouders?'
-            ]
-          },
-          {
-            id: 'ch-1-2',
-            title: 'Hoofdstuk 2: De eerste zoon',
-            introduction: 'Dmitri, de oudste zoon, wordt geïntroduceerd. Hij is het product van Fyodors eerste huwelijk. Dmitri is een trotse, emotionele man die het landgoed beheert maar zich beroofd voelt door zijn vader. Hij is verliefd op Agafya, een vrouw die eigenlijk met de oude man verloofd is.\n\nDit hoofdstuk onthult de spanning tussen vader en zoon, en de strijd om erfenis en eigendom die de familie zal tekenen.',
-            themes: ['Familiestrijd', 'Erfenis', 'Drievoudigeheid'],
-            philosophy: 'Dmitri vertegenwoordigt de eerste reactie op Fyodors falen: woede en opstand. Hij kan niet accepteren dat zijn vader zo oneerlijk is. Dit is een menselijke, aardse reactie op onrecht. Wanneer een vader faalt, is opstand een natuurlijk antwoord — maar is het ook de juiste?',
-            questions: [
-              'Is Dmitri\'s woede gerechtvaardigd?',
-              'Hoe gaan families met erfenisconflicten om?',
-              'Wat is het verschil tussen rechtvaardige woede en blinde razernij?'
-            ]
-          },
-          {
-            id: 'ch-1-3',
-            title: 'Hoofdstuk 3: Hoeren en zondaars',
-            introduction: 'We maken kennis met Fyodors tweede zoon, Ivan, die intellectueel en cynisch is. Hij is een atheïstische filosoof die in Moskou woont en werkt als journalist. Ivan is het product van Fyodors tweede huwelijk.\n\nHet derde kind, Aloysius (Alosja), is nog een kind en wordt in dit hoofdstuk kort genoemd als iemand die in een klooster zal worden ondergebracht. Hij is de derde zoon, het product van Fyodors derde huwelijk.',
-            themes: ['Intellectualisme', 'Atheïsme', 'Het derde kind'],
-            philosophy: 'Ivan is een moderne Russische denker die twijfelt aan God en de moraliteit. Zijn atheïsme is gebaseerd op het lijden dat hij ziet in de wereld — hoe kan een goede God het lijden van onschuldigen toestaan? Dit is het klassieke "probleem van het kwaad" in de filosofie. Ivan zal dit in latere hoofdstukken verder uitwerken.',
-            questions: [
-              'Wat drijft iemand tot atheïsme?',
-              'Is twijfel aan God een teken van intelligentie of van emotionaliteit?',
-              'Hoe verhoudt intellectuele twijfel zich tot vroomheid?'
-            ]
-          },
-          {
-            id: 'ch-1-4',
-            title: 'Hoofdstuk 4: Liefde in het donker',
-            introduction: 'Een tragische geschiedenis ontvouwt zich: Lisa, een jong meisje, wordt door Fyodor misbruikt omdat ze van hem houdt maar door hem in de steek wordt gelaten. Ze pleegt zelfmoord.\n\nDit hoofdstuk is een aanklacht tegen de seksuele uitbuiting van vrouwen in de Russische maatschappij van die tijd, en de macht die mannen over vrouwen hadden.',
-            themes: ['Seksueel misbruik', 'De machteloosheid van vrouwen', 'Schuld en schaamte'],
-            philosophy: 'Hier zien we de donkere kant van de mannelijke dominantie. Lisa wordt het slachtoffer van een systeem waarin mannen macht hebben over vrouwen. Haar dood is een daad van wanhoop, maar ook van verzet — een protest tegen een wereld die haar geen waardigheid gunde. Dostojevski toont hoe systemisch kwaad persoonlijke levens kan vernietigen.',
-            questions: [
-              'Hoe verhoudt macht zich tot moraliteit?',
-              'Wat is de rol van schaamte in een onrechtvaardige maatschappij?',
-              'Hoe kunnen slachtoffers verzet bieden zonder geweld?'
-            ]
-          },
-          {
-            id: 'ch-1-5',
-            title: 'Hoofdstuk 5: De heiligen en de zondaars',
-            introduction: 'We worden voorgesteld aan de heilige staretz Zosima, de geestelijke vader die Alosja in het klooster onderwijst. Zosima is een wijze, vriendelijke monnik die een andere visie biedt op het christelijk leven — niet van schuld en straf, maar van liefde en begrip.\n\nDit hoofdstuk introduceert de tegenhanger van Fyodor: een vaderfiguur die werkelijk om zijn leerlingen geeft.',
-            themes: ['Spirituele vaderschap', 'Het kloosterleven', 'Vroomheid versus formaliteit'],
-            philosophy: 'Zosima is het tegenbeeld van Fyodor. Waar Fyodor alleen geeft om zichzelf, geeft Zosima om anderen. Zijn spiritualiteit is gebaseerd op medeleven en liefde, niet op angst voor straf. Dit is Dostojevski\'s visie op authentiek christendom: niet een religie van schuld, maar van liefde. De staretz is een voorbeeld van hoe een "ware vader" zou zijn.',
-            questions: [
-              'Wat maakt iemand tot een goede geestelijke leider?',
-              'Hoe verschilt authenticiteit van formaliteit?',
-              'Kan een instituut zoals de kerk ooit werkelijk spiritueel zijn?'
-            ]
-          }
+          { id: '1-1-1', title: '1. Fjodor Pavlovitsj Karamazov', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-1-2', title: '2. Zijn oudste zoon geloosd', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-1-3', title: '3. Nieuw huwelijk, nieuwe kinderen', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-1-4', title: '4. De derde zoon Aljosja', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-1-5', title: '5. Startsy', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-2-1', title: 'Tweede boek: 1. Aankomst in het klooster', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-2-2', title: '2. De oude pias', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-2-3', title: '3. Gelovige vrouwen', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-2-4', title: '4. De kleingelovige dame', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-2-5', title: '5. Moge het zo zijn, moge het zo zijn!!', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-2-6', title: '6. Waarom leeft zo\'n man!', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-2-7', title: '7. Seminarist met ambitie', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-2-8', title: '8. Het schandaal', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-1', title: 'Derde boek: 1. In de bediendenvertrek', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-2', title: '2. Lizaveta Smerdjasjsjaja', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-3', title: '3. De biecht van een vurig hart. In verzen', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-4', title: '4. De biecht van een vurig hart. In anekdotes', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-5', title: '5. De biecht van een vurig hart. «Met de hielen omhoog»', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-6', title: '6. Smerdjakov', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-7', title: '7. Een controverse', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-8', title: '8. Bij een cognacje', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-9', title: '9. Wellustelingen', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-10', title: '10. Beiden tezamen', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-3-11', title: '11. Nog een verwoeste reputatie', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-4-1', title: 'Vierde boek: 1. Vader Ferapont', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-4-2', title: '2. Bij zijn vader', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-4-3', title: '3. Laat zich in met schooljongetjes', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-4-4', title: '4. Bij de Chochlakova\'s', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-4-5', title: '5. Emoties in de salon', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-4-6', title: '6. Emoties in een oud krot', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-4-7', title: '7. En in de open lucht', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-5-1', title: 'Vijfde boek: 1. De afspraak', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-5-2', title: '2. Smerdjakov met gitaar', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-5-3', title: '3. De broers maken kennis', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-5-4', title: '4. Rebellie', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-5-5', title: '5. De grootinquisiteur', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-5-6', title: '6. Waarin nog veel erg onduidelijk is', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-5-7', title: '7. «Met een verstandig mens is het goed praten»', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-6-1', title: 'Zesde boek: 1. Starets Zosima en zijn gasten', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-6-2', title: '2. Uit het leven van de in God ontslapen priestermonnik starets Zosima', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '1-6-3', title: '3. Uit de gesprekken en vermaningen van de starets Zosima', introduction: '', themes: [], philosophy: '', questions: [] }
         ]
       },
       {
-        id: 'book-2',
-        title: 'Boek II: Ongepaste samenkomsten',
+        id: 'deel-2',
+        title: 'TWEEDE DEEL',
         chapters: [
-          {
-            id: 'ch-2-1',
-            title: 'Hoofdstuk 1: De ontmoetingen',
-            introduction: 'De drie broers komen samen bij Fyodor thuis. Ze hebben elk hun eigen redenen om te komen: Dmitri wil zijn erfdeel en Agafya; Ivan komt om te onderzoeken voor een artikel; Alosja is om zijn vader te bezoeken.\n\nDit hoofdstuk beschrijft hun eerste gezamenlijke ontmoeting en de spanningen die al duidelijk worden.',
-            themes: ['Familiehereniging', 'Verwachtingen en teleurstellingen', 'De derde broer'],
-            philosophy: 'De broers zijn drie verschillende antwoorden op dezelfde vraag: hoe te leven in een wereld met een slechte vader? Dmitri reageert met emotie, Ivan met rede, Alosja met spiritualiteit. Samen vormen ze een microkosmos van de Russische maatschappij.',
-            questions: [
-              'Hoe beïnvloeden onze jeugdervaringen ons volwassen leven?',
-              'Wat is de rol van broers/zussen in onze identiteit?',
-              'Hoe kunnen families elkaar zowel ondersteunen als schaden?'
-            ]
-          },
-          {
-            id: 'ch-2-2',
-            title: 'Hoofdstuk 2: Het probleem van het kwaad',
-            introduction: 'Ivan, de atheïstische broer, begint een diepgaand gesprek over het bestaan van God. Hij betoogt tegen het bestaan van een goede God omdat hij het lijden van onschuldigen niet kan verklaren.\n\nZijn beroemde "Groot Inquisitor" passage wordt hier geïntroduceerd: hij vertelt over een hypothetische Christus die terugkeert en door de Inquisitie wordt gevangen genomen.',
-            themes: ['Het probleem van het kwaad', 'Vrije wil versus geluk', 'Atheïsme'],
-            philosophy: 'Ivan stelt: als God bestaat en goed is, waarom is er dan kwaad in de wereld? Dit is het klassieke "logische probleem van het kwaad". Hij kan niet accepteren dat onschuldigen lijden. Zijn conclusie: als God bestaat en dit toestaat, is Hij niet goed; als God goed is, bestaat Hij niet. Dit is een van de beroemdste filosofische argumenten in de literatuur.',
-            questions: [
-              'Kun je een goede God accepteren te midden van kwaad?',
-              'Wat is jouw antwoord op het probleem van het kwaad?',
-              'Is twijfel een vorm van geloof?'
-            ]
-          },
-          {
-            id: 'ch-2-3',
-            title: 'Hoofdstuk 3: De rebel',
-            introduction: 'Ivan blijft maar twijfelen. In plaats van te geloven in een goede God die het kwaad toestaat, kiest hij ervoor om "de kaart te retourneren" — hij weigert te accepteren dat universum waarin onschuldigen lijden.\n\nDit is een daad van morele opstand: liever niet bestaan dan te leven in een universum waar kinderen lijden.',
-            themes: ['Morele opstand', 'Nihilisme', 'De prijs van twijfel'],
-            philosophy: 'Ivan is een moreel rebel. Hij weigert te compromitteren met zijn geweten. Maar wat is het alternatief? Als er geen God is, is er ook geen objectieve moraal — alles is toegestaan. Dit opent de deur naar het extremisme van Smerdyakov, de bediende die de moord op Fyodor zal plegen.',
-            questions: [
-              'Is morele opstand altijd gerechtvaardigd?',
-              'Wat is het gevaar van nihilisme?',
-              'Kan iemand moreel zijn zonder God?'
-            ]
-          }
+          { id: '2-7-1', title: 'Zevende boek: 1. Een geur van bederf', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-7-2', title: '2. Het juiste ogenblik', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-7-3', title: '3. Het uitje', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-7-4', title: '4. De bruiloft van Kana', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-8-1', title: 'Achtste boek: 1. Koezma Samsonov', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-8-2', title: '2. De Terriër', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-8-3', title: '3. De goudmijnen', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-8-4', title: '4. Ljonja', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-8-5', title: '5. Bij het smeergeld', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-8-6', title: '6. De strijd', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-8-7', title: '7. Het einde', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-8-8', title: '8. ', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-1', title: 'Negende boek: 1. Hoe de carrière van ambtenaar Perchotin begon', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-2', title: '2. Alarm', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-3', title: '3. De lijdensweg van een mensenziel. Eerste beproeving', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-4', title: '4. Tweede beproeving', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-5', title: '5. Derde beproeving', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-6', title: '6. De officier van justitie heeft Mitja te pakken', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-7', title: '7. Mitja\'s grote geheim. Weggehoond', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-8', title: '8. De getuigenverklaringen. Het menneke', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '2-9-9', title: '9. Mitja weggevoerd', introduction: '', themes: [], philosophy: '', questions: [] }
         ]
       },
       {
-        id: 'book-3',
-        title: 'Boek III: Onbehoorlijke zinnen',
+        id: 'deel-3',
+        title: 'DERDE DEEL',
         chapters: [
-          {
-            id: 'ch-3-1',
-            title: 'Hoofdstuk 1: De moord',
-            introduction: 'Fyodor wordt vermoord. Hij wordt dood aangetroffen in zijn huis, verpletterd met een loden gewicht. Dmitri wordt onmiddellijk verdacht en gearresteerd.\n\nMaar wie heeft het gedaan? Er zijn meerdere verdachten: Dmitri had een motief, maar Ivan en Smerdyakov hadden ook redenen.',
-            themes: ['Moord', 'Schuldige onschuld', 'Het recht'],
-            philosophy: 'De moord op Fyodor is het culminatiepunt van alle spanningen in het boek. Maar wie is werkelijk schuldig? De fysieke daad is door Smerdyakov gepleegd, maar de geestelijke moord was door Ivan voorbereid met zijn ideeën. Dit is Dostojevski\'s stelling: ideeën kunnen doden. Woorden kunnen transformeren tot daden.',
-            questions: [
-              'Wie is eigenlijk verantwoordelijk voor Fyodors dood?',
-              'Hoe verhouden ideeën zich tot daden?',
-              'Wat is het verschil tussen schuld in de ogen van de wet en schuld in de ogen van het geweten?'
-            ]
-          },
-          {
-            id: 'ch-3-2',
-            title: 'Hoofdstuk 2: De rechtzaak',
-            introduction: 'Dmitri staat terecht. Het Proces van Dmitri is een meesterwerk van Dostojevski, die zelf ooit terecht stond en de juridische processen kende.\n\nTijdens de rechtszaak komen alle familierelaties en geheimen aan het licht. De aanklager schetst Dmitri als een monster, maar de verdediging probeert een ander beeld te geven.',
-            themes: ['Justitie', 'Klassenjustitie', 'Schuld en onschuld'],
-            philosophy: 'Het proces is een commentaar op de Russische rechtspraak van die tijd. De armen werden harder gestraft dan de rijken. Dmitri is arm, zijn vader was rijk — de symmetrie werkt tegen hem. Dostojevski toont hoe rechtenlijke systemen de armen treffen.',
-            questions: [
-              'Is het rechtssysteem rechtvaardig?',
-              'Hoe beïnvloedt armoede de uitkomst van een proces?',
-              'Wat is het verschil tussen wettigheid en rechtvaardigheid?'
-            ]
-          }
+          { id: '3-10-1', title: 'Tiende boek: 1. Kolja Krasotkin', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-10-2', title: '2. De kindertjes', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-10-3', title: '3. Een schooljongen', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-10-4', title: '4. Zjoetsjka', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-10-5', title: '5. Bij het bedje van Iljoesja', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-10-6', title: '6. Vroegrijp', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-10-7', title: '7. Ijoesja', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-1', title: 'Elfde boek: 1. Bij Groesjenka', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-2', title: '2. Het zere voetje', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-3', title: '3. Een duiveltje', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-4', title: '4. Een lofzang en een geheim', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-5', title: '5. Niet jij, niet jij!', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-6', title: '6. Eerste bezoek aan Smerdjakov', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-7', title: '7. Tweede bezoek aan Smerdjakov', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-8', title: '8. Derde en laatste gesprek met Smerdjakov', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-9', title: '9. De duivel. De nachtmerrie van Ivan Fjodorovitsj', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-11-10', title: '10. «Dat zei hij»', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-1', title: 'Twaalfde boek: 1. De noodlottige dag', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-2', title: '2. Gevaarlijke getuigen', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-3', title: '3. De medische expertise en een pond noten', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-4', title: '4. Het geluk lacht Mitja toe', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-5', title: '5. Een onverwachte catastrofe', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-6', title: '6. De rede van de officier van justitie. Een karakterschets', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-7', title: '7. Historisch overzicht', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-8', title: '8. Traktaat over Smerdjakov', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-9', title: '9. Psychologie zonder remmen. De trojka in galop', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-10', title: '10. Het pleidooi. Iets waarmee je alle kanten op kunt', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-11', title: '11. Er was geen geld. Er was geen roof', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-12', title: '12. En er was ook geen moord', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-13', title: '13. Overspelig in gedachten', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: '3-12-14', title: '14. De boertjes laten hun tanden zien', introduction: '', themes: [], philosophy: '', questions: [] }
         ]
       },
       {
-        id: 'book-4',
-        title: 'Boek IV: Lofzangen',
+        id: 'epiloog',
+        title: 'EPILOOG',
         chapters: [
-          {
-            id: 'ch-4-1',
-            title: 'Hoofdstuk 1: De begrafenis',
-            introduction: 'Na de gevangenisstraf van Dmitri overlijdt Alosja\'s geestelijke Vader, Zosima. Zijn dood is een enorme schok voor Alosja, die in hem een voorbeeld van goedheid zag.\n\nMaar zelfs na zijn dood worden de leerlingen teleurgesteld: het lichaam van Zosima begint snel te rotten, wat door sommigen wordt gezien als teken dat hij toch niet zo heilig was.',
-            themes: ['De dood van een geestelijke vader', 'Verrotting', 'Geloof en twijfel'],
-            philosophy: 'Zosima\'s dood en de verrotting van zijn lichaam is een test voor Alosja\'s geloof. Kan hij geloven in de geest, ongeacht de fysieke werkelijkheid? Dit is een allegorie voor de kerk: het instituut kan corrupt worden, maar de boodschap blijft. Alosja moet leren onderscheid te maken tussen de boodschapper en het bericht.',
-            questions: [
-              'Hoe ga je om met de dood van iemand die je dierbaar was?',
-              'Wat is het verschil tussen het lichaam en de geest?',
-              'Kan een instituut heilig zijn als de mensen het beheren imperfect zijn?'
-            ]
-          },
-          {
-            id: 'ch-4-2',
-            title: 'Hoofdstuk 2: Het einde',
-            introduction: 'Het boek eindigt met een cliffhanger: Dmitri ontsnapt uit de gevangenis en gaat naar Siberië. Alosja belooft voor hem te zorgen.\n\nIvan is gebroken door schuld, Smerdyakov heeft zichzelf van het leven beroofd. Alosja staat alleen, maar hij heeft een nieuwe taak: de kinderen die door Fyodor werden misbruikt, te beschermen.',
-            themes: ['Verzoening', 'Nieuwe hoop', 'De toekomst'],
-            philosophy: 'Het einde is triest maar ook hoopvol. Alosja neemt de verantwoordelijkheid die Fyodor had moeten nemen. Hij wordt de ware vaderfiguur die de kinderen nodig hebben. Dit is Dostojevski\'s boodschap: hoewel de oude generatie faalde, kan de nieuwe generatie het beter doen. De toekomst behoort aan degenen die liefhebben.',
-            questions: [
-              'Hoe kunnen we het beter doen dan de generaties voor ons?',
-              'Wat is de rol van vergeving in het genezen van het verleden?',
-              'Hoe eindigt een verhaal eigenlijk — met hoop of met wanhoop?'
-            ]
-          }
+          { id: 'ep-1', title: '1. Plannen om Mitja te redden', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: 'ep-2', title: '2. Even werd de leugen waarheid', introduction: '', themes: [], philosophy: '', questions: [] },
+          { id: 'ep-3', title: '3. De begrafenis van Iljoesjetsjka. De toespraak bij de steen', introduction: '', themes: [], philosophy: '', questions: [] }
         ]
       }
     ];
