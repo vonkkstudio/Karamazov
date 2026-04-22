@@ -578,8 +578,23 @@
     </div>
   </div>
 
-  <script>
-const books = [
+<script>
+    const bookTitles = {
+      'eerste boek': 'Eerste boek: De geschiedenis van een rare familie',
+      'tweede boek': 'Tweede boek: Een misplaatste bijeenkomst',
+      'derde boek': 'Derde boek: De wellustelingen',
+      'vierde boek': 'Vierde boek: Emoties',
+      'vijfde boek': 'Vijfde boek: Pro en contra',
+      'zesde boek': 'Zesde boek: Een Russische monnik',
+      'zevende boek': 'Zevende boek: Aljosja',
+      'achtste boek': 'Achtste boek: Mitja',
+      'negende boek': 'Negende boek: Het vooronderzoek',
+      'tiende boek': 'Tiende boek: De jongens',
+      'elfde boek': 'Elfde boek: Broer Ivan Fjodorovitsj',
+      'twaalfde boek': 'Twaalfde boek: Een gerechtelijke dwaling'
+    };
+
+    const books = [
       {
         id: 'deel-1',
         title: 'EERSTE DEEL',
@@ -887,14 +902,14 @@ function showScreen(id) {
           // Extract book name from title if present
           let chapterTitle = ch.title;
           let bookName = '';
-          const bookMatch = chapterTitle.match(/^([A-Za-z]+ boek):/i);
+          const bookMatch = chapterTitle.toLowerCase().match(/^([a-z]+ boek):/i);
           if (bookMatch) {
-            bookName = bookMatch[1].charAt(0).toUpperCase() + bookMatch[1].slice(1);
+            bookName = bookTitles[bookMatch[1]] || bookMatch[1];
             chapterTitle = chapterTitle.replace(/^[A-Za-z]+ boek: /i, '');
           }
           chapterTitle = chapterTitle.replace('Hoofdstuk ', 'H. ');
           
-          // Show book name as separator if different
+          // Show book title as separator if different
           if (bookName && bookName !== lastBookName) {
             html += `<div class="book-subsection">${bookName}</div>`;
             lastBookName = bookName;
