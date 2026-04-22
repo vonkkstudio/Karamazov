@@ -871,9 +871,11 @@ function showScreen(id) {
         html += `<div class="book-section"><h3>${book.title}</h3>`;
         for (const ch of book.chapters) {
           const isCompleted = progress[ch.id];
+          // Remove "Boek X: " prefix from title
+          const displayTitle = ch.title.replace(/^[A-Za-z]+ boek: /, '').replace('Hoofdstuk ', 'H. ');
           html += `<button class="chapter-btn ${isCompleted ? 'completed' : ''}" onclick="showChapter('${ch.id}')">
             <span class="check">${isCompleted ? '✓' : '○'}</span>
-            <span>${ch.title.replace('Hoofdstuk ', 'H. ')}</span>
+            <span>${displayTitle}</span>
           </button>`;
         }
         html += '</div>';
