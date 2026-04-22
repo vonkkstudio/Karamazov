@@ -172,6 +172,16 @@
       padding-top: 0;
     }
 
+    .book-subsection {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 16px 0 8px 0;
+      padding: 8px 12px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+    }
+
     .book-section h3 {
       font-size: 0.8rem;
       text-transform: uppercase;
@@ -867,30 +877,27 @@ function showScreen(id) {
     function renderChapterList() {
       const container = document.getElementById('chapterList');
       let html = '';
-      let currentBook = '';
+      let lastBookName = '';
       
       for (const book of books) {
         html += `<div class="book-section"><h3>${book.title}</h3>`;
         for (const ch of book.chapters) {
           const isCompleted = progress[ch.id];
           
-          // Extract book name from title
+          // Extract book name from title if present
           let chapterTitle = ch.title;
+          let bookName = '';
           const bookMatch = chapterTitle.match(/^([A-Za-z]+ boek):/i);
-          let bookName = bookMatch ? bookMatch[1] : null;
-          
-          // Format title
-          if (bookName) {
-            chapterTitle = chapterTitle.replace(/^[A-Za-z]+ boek: /i, '').replace('Hoofdstuk ', 'H. ');
-            // Capitalize
-            bookName = bookName.charAt(0).toUpperCase() + bookName.slice(1);
-          } else {
-            chapterTitle = chapterTitle.replace('Hoofdstuk ', 'H. ');
+          if (bookMatch) {
+            bookName = bookMatch[1].charAt(0).toUpperCase() + bookMatch[1].slice(1);
+            chapterTitle = chapterTitle.replace(/^[A-Za-z]+ boek: /i, '');
           }
+          chapterTitle = chapterTitle.replace('Hoofdstuk ', 'H. ');
           
-          // Add book subheader if it's a new book
-          if (bookName && bookName !== currentBook) {
-            currentBook = bookName;
+          // Show book name as separator if different
+          if (bookName && bookName !== lastBookName) {
+            html += `<div class="book-subsection">${bookName}</div>`;
+            lastBookName = bookName;
           }
           
           html += `<button class="chapter-btn ${isCompleted ? 'completed' : ''}" onclick="showChapter('${ch.id}')">
