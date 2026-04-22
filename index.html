@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Een readers guide voor De Gebroeders Karamazov van Fjodor Dostojevski">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>De Gebroeders Karamazov — Leesgids</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #faf8f5;
+      --bg-secondary: #f5f3ef;
+      --text: #2c2c2c;
+      --text-secondary: #666;
+      --text-light: #888;
+      --accent: #1a1a2e;
+      --accent-light: #2d2d4a;
+      --success: #2d7a2d;
+      --gold: #c4a35a;
+      --border: #e5e3df;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a2e;
+        --bg-secondary: #232338;
+        --text: #e0e0e0;
+        --text-secondary: #bbb;
+        --text-light: #888;
+        --accent: #4a4a6a;
+        --accent-light: #5a5a7a;
+        --success: #3d6a3d;
+        --gold: #8fbc8f;
+        --border: #3d3d55;
+      }
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app {
+      min-height: 100vh;
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--bg);
+    }
+
+    .screen {
+      display: none;
+      padding: 24px 20px 100px;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Intro Screen */
+    .intro-screen {
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .intro-screen h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .intro-screen h2 {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .intro-description {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      padding: 0 8px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      font-size: 0.85rem;
+    }
+
+    .feature-icon {
+      font-size: 1.3rem;
+    }
+
+    .start-button, .primary-button {
+      width: 100%;
+      padding: 16px 32px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .start-button:hover, .primary-button:hover {
+      background: var(--accent-light);
+    }
+
+    .resume-notice {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* Chapter Select */
+    .chapter-select h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .chapter-select .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .book-section {
+      margin-bottom: 24px;
+    }
+
+    .book-section h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-light);
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chapter-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .chapter-btn:hover {
+      background: var(--bg-secondary);
+      border-color: var(--text-light);
+    }
+
+    .chapter-btn.completed {
+      background: var(--bg-secondary);
+      border-color: var(--success);
+    }
+
+    .chapter-btn.completed .check {
+      color: var(--success);
+    }
+
+    .chapter-btn.current {
+      border-color: var(--accent);
+      border-width: 2px;
+    }
+
+    .check {
+      font-size: 1rem;
+      color: var(--text-light);
+      min-width: 20px;
+    }
+
+    /* Chapter View */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .back-button {
+      padding: 8px 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text);
+      transition: background 0.2s;
+    }
+
+    .back-button:hover {
+      background: var(--bg-secondary);
+    }
+
+    .info-button {
+      padding: 8px 14px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text);
+      transition: background 0.2s;
+    }
+
+    .info-button:hover {
+      background: var(--bg-secondary);
+    }
+
+    .progress-badge {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .chapter-view h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      font-size: 1rem;
+      color: var(--text);
+      text-align: justify;
+    }
+
+    .themes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .theme-tag {
+      padding: 6px 14px;
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      color: var(--success);
+    }
+
+    .quote {
+      padding: 18px;
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--gold);
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Info Screen */
+    .info-section {
+      margin-bottom: 28px;
+    }
+
+    .info-section h3 {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .person-card, .location-card {
+      padding: 14px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .person-card h4, .location-card h4 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .person-card p, .location-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .key-moment {
+      padding: 14px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border-left: 3px solid var(--gold);
+    }
+
+    .key-moment h4 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .key-moment p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .info-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .info-tab {
+      padding: 10px 18px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+      color: var(--text);
+    }
+
+    .info-tab.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .questions {
+      padding-left: 18px;
+    }
+
+    .questions li {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text);
+      padding-left: 6px;
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 16px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .secondary-btn {
+      padding: 10px 14px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--text);
+      transition: background 0.2s;
+    }
+
+    .secondary-btn:hover {
+      background: var(--border);
+    }
+
+    .secondary-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .mark-btn {
+      padding: 12px 20px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mark-btn:hover:not(:disabled) {
+      background: var(--accent-light);
+    }
+
+    .mark-btn.success {
+      background: var(--success);
+    }
+
+    .mark-btn:disabled {
+      background: var(--border);
+      cursor: default;
+    }
+
+    /* Empty state */
+    .empty-chapters {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 400px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+      
+      .chapter-view h2 {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Intro Screen -->
+    <div id="intro" class="screen intro-screen active">
+      <h1>De Gebroeders Karamazov</h1>
+      <h2>Een Readers Guide</h2>
+      <p class="intro-description">
+        Welkom bij jouw persoonlijke leesgids voor dit meesterwerk van Fjodor Dostojevski. 
+        Deze app begeleidt je door elk hoofdstuk met introducties, thema's, filosofische reflecties 
+        en discussievragen — alsof je een boekclub aan je zijde hebt.
+      </p>
+      <div class="features">
+        <div class="feature">
+          <span class="feature-icon">📖</span>
+          <span>Per hoofdstuk een introductie</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">💭</span>
+          <span>Thema's en filosofie</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">💬</span>
+          <span>Discussievragen</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">📚</span>
+          <span>Je eigen leestempo</span>
+        </div>
+      </div>
+      <button class="start-button" onclick="showChapterSelect()">Begin met lezen</button>
+      <p id="resumeNotice" class="resume-notice hidden"></p>
+    </div>
+
+    <!-- Chapter Select -->
+    <div id="select" class="screen chapter-select">
+      <h2>Kies een hoofdstuk</h2>
+      <p id="progressSubtitle" class="subtitle"></p>
+      <div id="chapterList"></div>
+    </div>
+
+    <!-- Chapter View -->
+    <div id="view" class="screen chapter-view">
+      <div class="header">
+        <button class="back-button" onclick="showChapterSelect()">← Terug</button>
+        <button class="info-button" onclick="showInfo()">ℹ️ Info</button>
+        <span id="headerProgress" class="progress-badge"></span>
+      </div>
+      <div id="chapterContent"></div>
+      <div class="footer">
+        <button id="prevBtn" class="secondary-btn" onclick="goPrev()">← Vorige</button>
+        <button id="markBtn" class="mark-btn" onclick="markComplete()">Markeer als gelezen</button>
+        <button id="nextBtn" class="secondary-btn" onclick="goNext()">Volgende →</button>
+      </div>
+    </div>
+
+    <!-- Info Screen -->
+    <div id="info" class="screen info-screen">
+      <div class="header">
+        <button class="back-button" onclick="goBack()">← Terug</button>
+        <span class="progress-badge">Personages & Locaties</span>
+      </div>
+      <div class="info-tabs">
+        <button class="info-tab active" onclick="switchInfoTab('characters', this)">Personages</button>
+        <button class="info-tab" onclick="switchInfoTab('locations', this)">Locaties</button>
+        <button class="info-tab" onclick="switchInfoTab('moments', this)">Key Moments</button>
+      </div>
+      <div id="infoContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const books = [
+      {
+        id: 'book-1',
+        title: 'Boek I: Een onwaardige geschiedenis',
+        chapters: [
+          {
+            id: 'ch-1-1',
+            title: 'Hoofdstuk 1: Patriarchale wellust',
+            introduction: 'Het verhaal begint met de oude Fyodor Karamazov, een landgoedbezitter die bekend staat om zijn wellustige en immorele gedrag. Hij is al drie keer weduwnaar en heeft geen liefde voor zijn kinderen. Fyodor is een man die alleen maar aan drank, vrouwen en geld denkt. Zijn gedrag is het toonbeeld van wat Dostojevski wil zeggen over de verrotting van de Russische maatschappij in die tijd.\n\nIn dit hoofdstuk ontmoeten we ook Pjotr Maksimovitsj Perkhotin, een jonge advocaat die naar het landgoed wordt gestuurd door zijn werkgever. Hij is nieuwsgierig en opmerkzaam, en zal later een belangrijke rol spelen in het verhaal.',
+            themes: ['Vaderlijke autoriteit', 'Morele verrotting', 'De Russische landadel'],
+            philosophy: 'Dostojevski introduceert het thema van de "vader" als symbool voor God. Fyodor is een parodie op een geestelijke vader — iemand die zijn verantwoordelijkheden als ouder volledig verwaarloost. Dit staat in contrast met de idee van een liefdevolle, spirituele vader die in het christendom wordt voorgesteld. De vraag die Dostojevski stelt: hoe kan een goede God bestaan als aardse vaders zo faliekant kunnen falen?',
+            questions: [
+              'Hoe zou je de rol van Fyodor als vader karakteriseren?',
+              'Wat zegt dit over de maatschappij waarin Dostojevski schreef?',
+              'Welke verwachtingen hebben kinderen van hun ouders?'
+            ]
+          },
+          {
+            id: 'ch-1-2',
+            title: 'Hoofdstuk 2: De eerste zoon',
+            introduction: 'Dmitri, de oudste zoon, wordt geïntroduceerd. Hij is het product van Fyodors eerste huwelijk. Dmitri is een trotse, emotionele man die het landgoed beheert maar zich beroofd voelt door zijn vader. Hij is verliefd op Agafya, een vrouw die eigenlijk met de oude man verloofd is.\n\nDit hoofdstuk onthult de spanning tussen vader en zoon, en de strijd om erfenis en eigendom die de familie zal tekenen.',
+            themes: ['Familiestrijd', 'Erfenis', 'Drievoudigeheid'],
+            philosophy: 'Dmitri vertegenwoordigt de eerste reactie op Fyodors falen: woede en opstand. Hij kan niet accepteren dat zijn vader zo oneerlijk is. Dit is een menselijke, aardse reactie op onrecht. Wanneer een vader faalt, is opstand een natuurlijk antwoord — maar is het ook de juiste?',
+            questions: [
+              'Is Dmitri\'s woede gerechtvaardigd?',
+              'Hoe gaan families met erfenisconflicten om?',
+              'Wat is het verschil tussen rechtvaardige woede en blinde razernij?'
+            ]
+          },
+          {
+            id: 'ch-1-3',
+            title: 'Hoofdstuk 3: Hoeren en zondaars',
+            introduction: 'We maken kennis met Fyodors tweede zoon, Ivan, die intellectueel en cynisch is. Hij is een atheïstische filosoof die in Moskou woont en werkt als journalist. Ivan is het product van Fyodors tweede huwelijk.\n\nHet derde kind, Aloysius (Alosja), is nog een kind en wordt in dit hoofdstuk kort genoemd als iemand die in een klooster zal worden ondergebracht. Hij is de derde zoon, het product van Fyodors derde huwelijk.',
+            themes: ['Intellectualisme', 'Atheïsme', 'Het derde kind'],
+            philosophy: 'Ivan is een moderne Russische denker die twijfelt aan God en de moraliteit. Zijn atheïsme is gebaseerd op het lijden dat hij ziet in de wereld — hoe kan een goede God het lijden van onschuldigen toestaan? Dit is het klassieke "probleem van het kwaad" in de filosofie. Ivan zal dit in latere hoofdstukken verder uitwerken.',
+            questions: [
+              'Wat drijft iemand tot atheïsme?',
+              'Is twijfel aan God een teken van intelligentie of van emotionaliteit?',
+              'Hoe verhoudt intellectuele twijfel zich tot vroomheid?'
+            ]
+          },
+          {
+            id: 'ch-1-4',
+            title: 'Hoofdstuk 4: Liefde in het donker',
+            introduction: 'Een tragische geschiedenis ontvouwt zich: Lisa, een jong meisje, wordt door Fyodor misbruikt omdat ze van hem houdt maar door hem in de steek wordt gelaten. Ze pleegt zelfmoord.\n\nDit hoofdstuk is een aanklacht tegen de seksuele uitbuiting van vrouwen in de Russische maatschappij van die tijd, en de macht die mannen over vrouwen hadden.',
+            themes: ['Seksueel misbruik', 'De machteloosheid van vrouwen', 'Schuld en schaamte'],
+            philosophy: 'Hier zien we de donkere kant van de mannelijke dominantie. Lisa wordt het slachtoffer van een systeem waarin mannen macht hebben over vrouwen. Haar dood is een daad van wanhoop, maar ook van verzet — een protest tegen een wereld die haar geen waardigheid gunde. Dostojevski toont hoe systemisch kwaad persoonlijke levens kan vernietigen.',
+            questions: [
+              'Hoe verhoudt macht zich tot moraliteit?',
+              'Wat is de rol van schaamte in een onrechtvaardige maatschappij?',
+              'Hoe kunnen slachtoffers verzet bieden zonder geweld?'
+            ]
+          },
+          {
+            id: 'ch-1-5',
+            title: 'Hoofdstuk 5: De heiligen en de zondaars',
+            introduction: 'We worden voorgesteld aan de heilige staretz Zosima, de geestelijke vader die Alosja in het klooster onderwijst. Zosima is een wijze, vriendelijke monnik die een andere visie biedt op het christelijk leven — niet van schuld en straf, maar van liefde en begrip.\n\nDit hoofdstuk introduceert de tegenhanger van Fyodor: een vaderfiguur die werkelijk om zijn leerlingen geeft.',
+            themes: ['Spirituele vaderschap', 'Het kloosterleven', 'Vroomheid versus formaliteit'],
+            philosophy: 'Zosima is het tegenbeeld van Fyodor. Waar Fyodor alleen geeft om zichzelf, geeft Zosima om anderen. Zijn spiritualiteit is gebaseerd op medeleven en liefde, niet op angst voor straf. Dit is Dostojevski\'s visie op authentiek christendom: niet een religie van schuld, maar van liefde. De staretz is een voorbeeld van hoe een "ware vader" zou zijn.',
+            questions: [
+              'Wat maakt iemand tot een goede geestelijke leider?',
+              'Hoe verschilt authenticiteit van formaliteit?',
+              'Kan een instituut zoals de kerk ooit werkelijk spiritueel zijn?'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'book-2',
+        title: 'Boek II: Ongepaste samenkomsten',
+        chapters: [
+          {
+            id: 'ch-2-1',
+            title: 'Hoofdstuk 1: De ontmoetingen',
+            introduction: 'De drie broers komen samen bij Fyodor thuis. Ze hebben elk hun eigen redenen om te komen: Dmitri wil zijn erfdeel en Agafya; Ivan komt om te onderzoeken voor een artikel; Alosja is om zijn vader te bezoeken.\n\nDit hoofdstuk beschrijft hun eerste gezamenlijke ontmoeting en de spanningen die al duidelijk worden.',
+            themes: ['Familiehereniging', 'Verwachtingen en teleurstellingen', 'De derde broer'],
+            philosophy: 'De broers zijn drie verschillende antwoorden op dezelfde vraag: hoe te leven in een wereld met een slechte vader? Dmitri reageert met emotie, Ivan met rede, Alosja met spiritualiteit. Samen vormen ze een microkosmos van de Russische maatschappij.',
+            questions: [
+              'Hoe beïnvloeden onze jeugdervaringen ons volwassen leven?',
+              'Wat is de rol van broers/zussen in onze identiteit?',
+              'Hoe kunnen families elkaar zowel ondersteunen als schaden?'
+            ]
+          },
+          {
+            id: 'ch-2-2',
+            title: 'Hoofdstuk 2: Het probleem van het kwaad',
+            introduction: 'Ivan, de atheïstische broer, begint een diepgaand gesprek over het bestaan van God. Hij betoogt tegen het bestaan van een goede God omdat hij het lijden van onschuldigen niet kan verklaren.\n\nZijn beroemde "Groot Inquisitor" passage wordt hier geïntroduceerd: hij vertelt over een hypothetische Christus die terugkeert en door de Inquisitie wordt gevangen genomen.',
+            themes: ['Het probleem van het kwaad', 'Vrije wil versus geluk', 'Atheïsme'],
+            philosophy: 'Ivan stelt: als God bestaat en goed is, waarom is er dan kwaad in de wereld? Dit is het klassieke "logische probleem van het kwaad". Hij kan niet accepteren dat onschuldigen lijden. Zijn conclusie: als God bestaat en dit toestaat, is Hij niet goed; als God goed is, bestaat Hij niet. Dit is een van de beroemdste filosofische argumenten in de literatuur.',
+            questions: [
+              'Kun je een goede God accepteren te midden van kwaad?',
+              'Wat is jouw antwoord op het probleem van het kwaad?',
+              'Is twijfel een vorm van geloof?'
+            ]
+          },
+          {
+            id: 'ch-2-3',
+            title: 'Hoofdstuk 3: De rebel',
+            introduction: 'Ivan blijft maar twijfelen. In plaats van te geloven in een goede God die het kwaad toestaat, kiest hij ervoor om "de kaart te retourneren" — hij weigert te accepteren dat universum waarin onschuldigen lijden.\n\nDit is een daad van morele opstand: liever niet bestaan dan te leven in een universum waar kinderen lijden.',
+            themes: ['Morele opstand', 'Nihilisme', 'De prijs van twijfel'],
+            philosophy: 'Ivan is een moreel rebel. Hij weigert te compromitteren met zijn geweten. Maar wat is het alternatief? Als er geen God is, is er ook geen objectieve moraal — alles is toegestaan. Dit opent de deur naar het extremisme van Smerdyakov, de bediende die de moord op Fyodor zal plegen.',
+            questions: [
+              'Is morele opstand altijd gerechtvaardigd?',
+              'Wat is het gevaar van nihilisme?',
+              'Kan iemand moreel zijn zonder God?'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'book-3',
+        title: 'Boek III: Onbehoorlijke zinnen',
+        chapters: [
+          {
+            id: 'ch-3-1',
+            title: 'Hoofdstuk 1: De moord',
+            introduction: 'Fyodor wordt vermoord. Hij wordt dood aangetroffen in zijn huis, verpletterd met een loden gewicht. Dmitri wordt onmiddellijk verdacht en gearresteerd.\n\nMaar wie heeft het gedaan? Er zijn meerdere verdachten: Dmitri had een motief, maar Ivan en Smerdyakov hadden ook redenen.',
+            themes: ['Moord', 'Schuldige onschuld', 'Het recht'],
+            philosophy: 'De moord op Fyodor is het culminatiepunt van alle spanningen in het boek. Maar wie is werkelijk schuldig? De fysieke daad is door Smerdyakov gepleegd, maar de geestelijke moord was door Ivan voorbereid met zijn ideeën. Dit is Dostojevski\'s stelling: ideeën kunnen doden. Woorden kunnen transformeren tot daden.',
+            questions: [
+              'Wie is eigenlijk verantwoordelijk voor Fyodors dood?',
+              'Hoe verhouden ideeën zich tot daden?',
+              'Wat is het verschil tussen schuld in de ogen van de wet en schuld in de ogen van het geweten?'
+            ]
+          },
+          {
+            id: 'ch-3-2',
+            title: 'Hoofdstuk 2: De rechtzaak',
+            introduction: 'Dmitri staat terecht. Het Proces van Dmitri is een meesterwerk van Dostojevski, die zelf ooit terecht stond en de juridische processen kende.\n\nTijdens de rechtszaak komen alle familierelaties en geheimen aan het licht. De aanklager schetst Dmitri als een monster, maar de verdediging probeert een ander beeld te geven.',
+            themes: ['Justitie', 'Klassenjustitie', 'Schuld en onschuld'],
+            philosophy: 'Het proces is een commentaar op de Russische rechtspraak van die tijd. De armen werden harder gestraft dan de rijken. Dmitri is arm, zijn vader was rijk — de symmetrie werkt tegen hem. Dostojevski toont hoe rechtenlijke systemen de armen treffen.',
+            questions: [
+              'Is het rechtssysteem rechtvaardig?',
+              'Hoe beïnvloedt armoede de uitkomst van een proces?',
+              'Wat is het verschil tussen wettigheid en rechtvaardigheid?'
+            ]
+          }
+        ]
+      },
+      {
+        id: 'book-4',
+        title: 'Boek IV: Lofzangen',
+        chapters: [
+          {
+            id: 'ch-4-1',
+            title: 'Hoofdstuk 1: De begrafenis',
+            introduction: 'Na de gevangenisstraf van Dmitri overlijdt Alosja\'s geestelijke Vader, Zosima. Zijn dood is een enorme schok voor Alosja, die in hem een voorbeeld van goedheid zag.\n\nMaar zelfs na zijn dood worden de leerlingen teleurgesteld: het lichaam van Zosima begint snel te rotten, wat door sommigen wordt gezien als teken dat hij toch niet zo heilig was.',
+            themes: ['De dood van een geestelijke vader', 'Verrotting', 'Geloof en twijfel'],
+            philosophy: 'Zosima\'s dood en de verrotting van zijn lichaam is een test voor Alosja\'s geloof. Kan hij geloven in de geest, ongeacht de fysieke werkelijkheid? Dit is een allegorie voor de kerk: het instituut kan corrupt worden, maar de boodschap blijft. Alosja moet leren onderscheid te maken tussen de boodschapper en het bericht.',
+            questions: [
+              'Hoe ga je om met de dood van iemand die je dierbaar was?',
+              'Wat is het verschil tussen het lichaam en de geest?',
+              'Kan een instituut heilig zijn als de mensen het beheren imperfect zijn?'
+            ]
+          },
+          {
+            id: 'ch-4-2',
+            title: 'Hoofdstuk 2: Het einde',
+            introduction: 'Het boek eindigt met een cliffhanger: Dmitri ontsnapt uit de gevangenis en gaat naar Siberië. Alosja belooft voor hem te zorgen.\n\nIvan is gebroken door schuld, Smerdyakov heeft zichzelf van het leven beroofd. Alosja staat alleen, maar hij heeft een nieuwe taak: de kinderen die door Fyodor werden misbruikt, te beschermen.',
+            themes: ['Verzoening', 'Nieuwe hoop', 'De toekomst'],
+            philosophy: 'Het einde is triest maar ook hoopvol. Alosja neemt de verantwoordelijkheid die Fyodor had moeten nemen. Hij wordt de ware vaderfiguur die de kinderen nodig hebben. Dit is Dostojevski\'s boodschap: hoewel de oude generatie faalde, kan de nieuwe generatie het beter doen. De toekomst behoort aan degenen die liefhebben.',
+            questions: [
+              'Hoe kunnen we het beter doen dan de generaties voor ons?',
+              'Wat is de rol van vergeving in het genezen van het verleden?',
+              'Hoe eindigt een verhaal eigenlijk — met hoop of met wanhoop?'
+            ]
+          }
+        ]
+      }
+    ];
+
+    const characters = [
+      { name: 'Fyodor Karamazov', role: 'De vader', description: 'De oude landgoedbezitter die bekend staat om zijn wellust, zelfzuchtigheid en verwaarlozing van zijn kinderen. Hij is drie keer weduwnaar en heeft drie zonen uit drie verschillende huwelijken.' },
+      { name: 'Dmitri Karamasov', role: 'Oudste zoon', description: 'De zoon uit Fyodors eerste huwelijk. Trots, emotioneel en opvliegend. Verliefd op Agafya. Hij is deels onecht, deels edel — een man van passie die worstelt met zijn plaats in de familie.' },
+      { name: 'Ivan Karamazov', role: 'Tweede zoon', description: 'De intellectuele, cynische zoon uit Fyodors tweede huwelijk. Een atheïstische filosoof en journalist die het bestaan van een goede God probeert te weerleggen met het "probleem van het kwaad".' },
+      { name: 'Aloysia (Alosja) Karamazov', role: 'Jongste zoon', description: 'De zoon uit Fyodors derde huwelijk, nog een kind. Hij wordt naar het klooster gestuurd waar hij leerling wordt van staretz Zosima. Vertegenwoordigt de hoop op een betere toekomst.' },
+      { name: 'Staretz Zosima', role: 'Geestelijke vader', description: 'De wijze, liefdevolle monnik die Alosja onderwijst. Het tegenbeeld van Fyodor — een vaderfiguur die werkelijk om anderen geeft. Zijn spiritualiteit is gebaseerd op liefde, niet op schuld.' },
+      { name: 'Agafya (Katerina Ivanovna)', role: 'Verloofde van Fyodor', description: 'Een mooie, trotse vrouw die eigenlijk verliefd is op Dmitri maar door Fyodor wordt "geclaimd". Ze is het symbool van de machtsongelijkheid tussen mannen en vrouwen.' },
+      { name: 'Smerdyakov', role: 'Bediende', description: 'De onechte zoon van Fyodor (uit een affaire met een bediende). Een sluwe, berekende man die later de moord op Fyodor zal plegen. Vertegenwoordigt de nihilistische logica van Ivan.' },
+      { name: 'Grushenka', role: 'Liefde van Dmitri', description: 'Een jonge vrouw die eerst door een rijke Poolse man werd misbruikt en nu haar eigen geld verdient. Ze is liefdevol maar ook complex — niet zonder eigen belangen.' },
+      { name: 'Klaas', role: 'Bedelaar', description: 'Een kleine, mismaakte bedelaar die in het verhaal verschijnt als symbool van onschuldig lijden. Zijn lot wordt gebruikt door Ivan als bewijs tegen het bestaan van een goede God.' },
+      { name: 'Rakitin', role: 'Bekende van de familie', description: 'Een slimme, pragmatische man die alle kanten op kan. Hij is een manipulator die probeert te profiteren van de situatie.' }
+    ];
+
+    const locations = [
+      { name: 'Het Karamazov landgoed', description: 'Het grote, vervallen landgoed waar Fyodor woont. Het centrum van de familiegeschiedenis en de strijd om erfenis.' },
+      { name: 'Het klooster', description: 'Waar staretz Zosima woont en Alosja leert. Een plaats van spiritualiteit en contemplatie, ver weg van de wereldlijke conflicten.' },
+      { name: 'Moskou', description: 'Waar Ivan woont en werkt als journalist. Het hart van de Russische intellectuele wereld van die tijd.' },
+      { name: 'De gevangenis', description: 'Waar Dmitri wordt vastgehouden na zijn arrestatie. Een koude, harde plaats die de Russische justitie symboliseert.' },
+      { name: 'Het gerechtsgebouw', description: 'Waar Dmitri terechtstaat. De plek waar de klassenstrijd zichtbaar wordt in de rechtspraak.' }
+    ];
+
+    const keyMoments = [
+      { title: 'De introductie van Fyodor', book: 'Boek I', description: 'De lezer maakt kennis met de oude Karamazov en zijn verwaarloosde kinderen. De toon voor familiestrijd wordt gezet.' },
+      { title: 'Lisa\'s zelfmoord', book: 'Boek I', description: 'Een jong meisje dat door Fyodor wordt misbruikt en in de steek gelaten, neemt haar eigen leven. Een schokkend moment dat de duisternis van Fyodor toont.' },
+      { title: 'Het gesprek over God', book: 'Boek II', description: 'Ivan betoogt tegen het bestaan van een goede God vanwege het lijden van onschuldigen. Het beroemde "Groot Inquisitor" verhaal.' },
+      { title: 'De moord op Fyodor', book: 'Boek III', description: 'Fyodor wordt vermoord aangetroffen. Wie is verantwoordelijk? Het mystery dat het verhaal drijft.' },
+      { title: 'Dmitri\'s proces', book: 'Boek III', description: 'Dmitri staat terecht voor de moord op zijn vader. De rechtszaak onthult alle famililegeheimen.' },
+      { title: 'Zosima\'s dood', book: 'Boek IV', description: 'De geestelijke vader van Alosja sterft. Zijn lichaam gaat rotten, wat een test is voor Alosja\'s geloof.' },
+      { title: 'Het einde', book: 'Boek IV', description: 'Dmitri ontsnapt, Ivan is gebroken, Alosja neemt nieuwe verantwoordelijkheid. DeFamilies saga eindigt met een sprankje hoop.' }
+    ];
+
+    let currentChapterId = null;
+    let progress = {};
+    const STORAGE_KEY = 'karamazov-guide-progress';
+
+    function loadProgress() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) progress = JSON.parse(saved);
+      } catch (e) {
+        console.error('Failed to load progress', e);
+        progress = {};
+      }
+      updateProgressUI();
+    }
+
+    function saveProgress() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      } catch (e) {
+        console.error('Failed to save progress', e);
+      }
+      updateProgressUI();
+    }
+
+    function updateProgressUI() {
+      const stats = getProgressStats();
+      const notice = document.getElementById('resumeNotice');
+      if (stats.completed > 0) {
+        notice.textContent = `Je hebt ${stats.completed} van de ${stats.total} hoofdstukken voltooid.`;
+        notice.classList.remove('hidden');
+      } else {
+        notice.classList.add('hidden');
+      }
+      document.getElementById('progressSubtitle').textContent = `${stats.completed} / ${stats.total} voltooid`;
+      document.getElementById('headerProgress').textContent = `${stats.completed}/${stats.total}`;
+    }
+
+    function getProgressStats() {
+      let total = 0;
+      for (const book of books) total += book.chapters.length;
+      const completed = Object.values(progress).filter(Boolean).length;
+      return { completed, total };
+    }
+
+    function getAllChapters() {
+      const all = [];
+      for (const book of books) {
+        for (const ch of book.chapters) all.push(ch);
+      }
+      return all;
+    }
+
+    function getChapter(id) {
+      return getAllChapters().find(c => c.id === id);
+    }
+
+    function getChapterIndex(id) {
+      const all = getAllChapters();
+      return all.findIndex(c => c.id === id);
+    }
+
+    function showIntro() {
+      showScreen('intro');
+    }
+
+    function showChapterSelect() {
+      renderChapterList();
+      showScreen('select');
+      currentChapterId = null;
+    }
+
+    function showChapter(id) {
+      currentChapterId = id;
+      renderChapterView(id);
+      showScreen('view');
+    }
+
+function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    let lastScreen = 'intro';
+
+    function showIntro() {
+      lastScreen = 'intro';
+      showScreen('intro');
+    }
+
+    function showChapterSelect() {
+      lastScreen = 'select';
+      renderChapterList();
+      showScreen('select');
+      currentChapterId = null;
+    }
+
+    function showChapter(id) {
+      lastScreen = 'view';
+      currentChapterId = id;
+      renderChapterView(id);
+      showScreen('view');
+    }
+
+    function showInfo() {
+      lastScreen = 'view';
+      switchInfoTab('characters');
+      showScreen('info');
+    }
+
+    function goBack() {
+      if (lastScreen === 'view' && currentChapterId) {
+        showScreen('view');
+      } else {
+        showChapterSelect();
+      }
+    }
+
+    function switchInfoTab(tab, btn) {
+      document.querySelectorAll('.info-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      
+      const container = document.getElementById('infoContent');
+      let html = '';
+      
+      if (tab === 'characters') {
+        for (const p of characters) {
+          html += `<div class="person-card"><h4>${p.name}</h4><p><strong>${p.role}</strong> — ${p.description}</p></div>`;
+        }
+      } else if (tab === 'locations') {
+        for (const l of locations) {
+          html += `<div class="location-card"><h4>${l.name}</h4><p>${l.description}</p></div>`;
+        }
+      } else if (tab === 'moments') {
+        for (const m of keyMoments) {
+          html += `<div class="key-moment"><h4>${m.title} (${m.book})</h4><p>${m.description}</p></div>`;
+        }
+      }
+      
+      container.innerHTML = html;
+    }
+
+    function renderChapterList() {
+      const container = document.getElementById('chapterList');
+      let html = '';
+      for (const book of books) {
+        html += `<div class="book-section"><h3>${book.title}</h3>`;
+        for (const ch of book.chapters) {
+          const isCompleted = progress[ch.id];
+          html += `<button class="chapter-btn ${isCompleted ? 'completed' : ''}" onclick="showChapter('${ch.id}')">
+            <span class="check">${isCompleted ? '✓' : '○'}</span>
+            <span>${ch.title.replace('Hoofdstuk ', 'H. ')}</span>
+          </button>`;
+        }
+        html += '</div>';
+      }
+      container.innerHTML = html;
+    }
+
+    function renderChapterView(id) {
+      const ch = getChapter(id);
+      if (!ch) return;
+      const isCompleted = progress[id];
+      
+      document.getElementById('markBtn').textContent = isCompleted ? '✓ Gelezen' : 'Markeer als gelezen';
+      document.getElementById('markBtn').className = isCompleted ? 'mark-btn success' : 'mark-btn';
+      
+      const all = getAllChapters();
+      const idx = all.findIndex(c => c.id === id);
+      document.getElementById('prevBtn').disabled = idx <= 0;
+      document.getElementById('nextBtn').disabled = idx >= all.length - 1;
+      
+      document.getElementById('chapterContent').innerHTML = `
+        <h2>${ch.title}</h2>
+        
+        <div class="section">
+          <h3>📖 Inleiding</h3>
+          <p>${ch.introduction.replace(/\n\n/g, '</p><p>')}</p>
+        </div>
+        
+        <div class="section">
+          <h3>🎯 Thema's</h3>
+          <div class="themes">
+            ${ch.themes.map(t => `<span class="theme-tag">${t}</span>`).join('')}
+          </div>
+        </div>
+        
+        <div class="section">
+          <h3>💭 Filosofie</h3>
+          <blockquote class="quote">${ch.philosophy}</blockquote>
+        </div>
+        
+        <div class="section">
+          <h3>💬 Discussievragen</h3>
+          <ol class="questions">
+            ${ch.questions.map(q => `<li>${q}</li>`).join('')}
+          </ol>
+        </div>
+      `;
+    }
+
+    function markComplete() {
+      if (!currentChapterId) return;
+      progress[currentChapterId] = true;
+      saveProgress();
+      renderChapterView(currentChapterId);
+    }
+
+    function goNext() {
+      if (!currentChapterId) return;
+      const all = getAllChapters();
+      const idx = all.findIndex(c => c.id === currentChapterId);
+      if (idx < all.length - 1) {
+        showChapter(all[idx + 1].id);
+      }
+    }
+
+    function goPrev() {
+      if (!currentChapterId) return;
+      const all = getAllChapters();
+      const idx = all.findIndex(c => c.id === currentChapterId);
+      if (idx > 0) {
+        showChapter(all[idx - 1].id);
+      }
+    }
+
+    // Initialize
+    loadProgress();
+  </script>
+</body>
+</html>
