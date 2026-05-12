@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { books, type Book, type Chapter } from '../data/books';
 import { themes } from '../data/themes';
 import { characters } from '../data/characters';
+import { quotes } from '../data/quotes';
 import { useProgress } from '../hooks/useProgress';
 import { OrnamentDivider, OrnamentBorder } from '../components/Ornament';
 
@@ -175,6 +176,7 @@ function ChapterList({
 function ChapterDetail({ chapter: ch, book, onBack }: { chapter: Chapter; book: Book; onBack: () => void }) {
   const chapterThemes = themes.filter((t) => ch.themeIds.includes(t.id));
   const chapterCharacters = characters.filter((c) => ch.characterIds.includes(c.id));
+  const chapterQuotes = quotes.filter((q) => q.chapterId === ch.id);
 
   return (
     <div className="flex flex-col pb-24">
@@ -208,6 +210,33 @@ function ChapterDetail({ chapter: ch, book, onBack }: { chapter: Chapter; book: 
           </h2>
           <p className="text-parchment-200/85 font-body text-base leading-relaxed">{ch.summary}</p>
         </div>
+
+        {/* Notable quotes */}
+        {chapterQuotes.length > 0 && (
+          <div>
+            <OrnamentDivider />
+            <h2 className="text-gold-500/80 text-xs tracking-widest uppercase mb-3" style={{ fontFamily: 'var(--font-ui)' }}>
+              Beroemde passages
+            </h2>
+            <div className="flex flex-col gap-4">
+              {chapterQuotes.map((q) => (
+                <div key={q.id} className="border-l-2 border-gold-500/50 pl-4">
+                  <p className="text-gold-200/90 font-display text-base leading-relaxed italic mb-2">
+                    "{q.dutch}"
+                  </p>
+                  <p className="text-stone-500 text-xs font-body mb-1">— {q.speaker}</p>
+                  <p className="text-stone-600 text-xs font-body italic">{q.context}</p>
+                  <details className="mt-2">
+                    <summary className="text-stone-600 text-xs cursor-pointer" style={{ fontFamily: 'var(--font-ui)' }}>
+                      Origineel (Engels)
+                    </summary>
+                    <p className="text-stone-600 text-xs font-body italic mt-1 leading-relaxed">"{q.original}"</p>
+                  </details>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Key moments */}
         {ch.keyMoments.length > 0 && (
